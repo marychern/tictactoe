@@ -1,9 +1,10 @@
 {/* LoginScreen:
       initial route of app
 */}
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Title } from 'react-native-paper';
+import { AuthContext } from '../navigation/AuthProvider';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
@@ -36,6 +37,7 @@ export default function Login({ navigation }) {
         modeValue='contained'
         color='#9bc8d4'
         labelStyle={styles.loginButtonLabel}
+        onPress={() => login(email, password)}
       />
       {/* signup button navigates to sign up screen */}
       <FormButton
