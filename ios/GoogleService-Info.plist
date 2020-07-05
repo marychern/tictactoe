@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>683603676416-79ulgns7aqrrjgdsn8d444lbe48dfga7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.683603676416-79ulgns7aqrrjgdsn8d444lbe48dfga7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC6wWDqrxRA-ruf2G378m0VlrXD-_e6AA8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>683603676416</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.tictactoe</string>
+	<key>PROJECT_ID</key>
+	<string>marys-tictactoe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>marys-tictactoe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:683603676416:ios:e92886f39e875b8f2277e5</string>
+	<key>DATABASE_URL</key>
+	<string>https://marys-tictactoe.firebaseio.com</string>
+</dict>
+</plist>

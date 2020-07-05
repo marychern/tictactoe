@@ -1,8 +1,10 @@
-// AuthStack:
-//    stack navigator for login/signup screens
+{/* AuthStack:
+      stack navigator for login/signup screens
+*/}
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignupScreen from '../screens/SignupScreen';
 import LoginScreen from '../screens/LoginScreen';
+import SignupScreen from '../screens/SignupScreen';
 
 const Stack = createStackNavigator();
 

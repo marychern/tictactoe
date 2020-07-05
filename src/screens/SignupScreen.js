@@ -1,8 +1,9 @@
-// SignupScreen:
-//    routed from login screen if user is new
+{/* SignupScreen:
+      routed from login screen if user is new
+*/}
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Title, IconButton } from 'react-native-paper';
+import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
@@ -12,17 +13,19 @@ export default function SignupScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Title style={styles.titleText}>Sign up to play</Title>
+      <Title style={styles.titleText}>Sign up to play!</Title>
       <FormInput
         labelName='Email'
         value={email}
         autoCapitalize='none'
+        theme={{colors: {primary: '#9bc8d4'}}}
         onChangeText={userEmail => setEmail(userEmail)}
       />
       <FormInput
         labelName='Password'
         value={password}
         secureTextEntry={true}
+        theme={{colors: {primary: '#9bc8d4'}}}
         onChangeText={userPassword => setPassword(userPassword)}
       />
       <FormButton
@@ -31,12 +34,13 @@ export default function SignupScreen({ navigation }) {
         color='#9bc8d4'
         labelStyle={styles.loginButtonLabel}
       />
-      // button to navigate back to login screen
-      <IconButton
-        icon='keyboard-backspace'
-        size={30}
-        style={styles.navButton}
+      {/* button to navigate back to login screen */}
+      <FormButton
+        title='Back to login'
+        modeValue='text'
+        uppercase={false}
         color='#9bc8d4'
+        labelStyle={styles.navButtonText}
         onPress={() => navigation.goBack()}
       />
     </View>
@@ -51,6 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   titleText: {
+    color: '#9bc8d4',
     fontSize: 24,
     marginBottom: 10
   },

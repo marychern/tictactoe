@@ -1,6 +1,6 @@
-// Routes:
-//    navigates between the different stack navigators
-
+{/* Routes:
+      navigates between the different stack navigators
+*/}
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './AuthStack';

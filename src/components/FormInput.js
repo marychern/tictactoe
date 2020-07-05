@@ -1,10 +1,11 @@
-// FormInput:
-//    a component that provides a text input field for login/signup screens
+{/* FormInput:
+      a component that provides a text input field for login/signup screens
+*/}
 import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
-// get user's screen dimensions
+{/* get user's screen dimensions */}
 const { width, height } = Dimensions.get('screen');
 
 export default function FormInput({ labelName, ...rest }) {
