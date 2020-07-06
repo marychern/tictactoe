@@ -9,16 +9,10 @@ import FormButton from '../components/FormButton';
 
 export default function HomeScreen() {
   const { user, logout } = useContext(AuthContext);
-  
+
   return (
     <View style={styles.container}>
-      <Title>Home Screen</Title>
-      <Title>Join or Create a Game Here!</Title>
-      <FormButton
-        modeValue='contained'
-        title='Logout'
-        onPress={() => logout()}
-      />
+      <Title style={styles.titleText}>Join or Create a Game!</Title>
     </View>
   );
 }
@@ -29,5 +23,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  titleText: {
+    color: '#9bc8d4',
+    fontSize: 24,
+    marginBottom: 10
   }
 });

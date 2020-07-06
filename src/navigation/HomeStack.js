@@ -3,14 +3,17 @@
 */}
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function HomeStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name='Home' component={HomeScreen} />
-    </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name='Home' component={HomeScreen} />
+        <Tab.Screen name='Settings' component={SettingsScreen} />
+      </Tab.Navigator>
   );
 }
