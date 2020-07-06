@@ -9,6 +9,7 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 export default function Login({ navigation }) {
+  const { login } = useContext(AuthContext);
   {/* initial values of user email & password */}
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

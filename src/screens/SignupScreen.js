@@ -9,6 +9,7 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 export default function SignupScreen({ navigation }) {
+  const { register } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
