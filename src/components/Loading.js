@@ -12,6 +12,7 @@ export default function Loading() {
   );
 }
 
+
 const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,

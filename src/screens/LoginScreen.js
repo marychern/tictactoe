@@ -53,6 +53,7 @@ export default function Login({ navigation }) {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#292929',

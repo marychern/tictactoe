@@ -2,54 +2,85 @@
       initial screen after logging in where you can join/create a game
 */}
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { IconButton, Title, Text } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
-import Modal from 'react-native-modal';
+import { AuthContext } from '../navigation/AuthProvider';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import range from 'lodash';
+
+const _ = range;
+
+export let game_ID = '';
+export let name_ID = '';
+export let symbol = '';
 
 export default function HomeScreen({ navigation }) {
   {/* state variables for game ID and player usernames */}
   const [gameID, setGameID] = useState('');
   const [nameID, setNameID] = useState('');
   const [playerO, setPlayerO] = useState('');
-  const [isModalVisible, setModalVisible] = useState(false);
-  {/* state variable for toggling popup */}
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  {/* state variables for checking gameID correctness/availability */}
 
   {/* updates firestore with player O username */}
   function handleJoinPress() {
-    if (gameID.length>0 && nameID.length>0) {
+    if (gameID.length>0) {
+      /* checks if gameID is correct or not
+      if (firestore().collection('GAMES').doc('gameID').) {
+
+      }
+      else {
+
+      } */
       firestore()
         .collection('GAMES')
         .doc(gameID)
         .update({
           player_O: nameID
-        })
-        .then(() => {
-          toggleModal;
-          navigation.navigate('Game')
         });
+      game_ID = gameID;
+      name_ID = nameID;
+      symbol = 'O';
+      navigation.navigate('Game');
     }
+    else Alert.alert('Error','Please enter a username and game ID');
   }
   {/* creates new doc in firestore with game ID (doc ID) and player X username */}
   function handleCreatePress() {
-    if (gameID.length>0 && nameID.length>0) {
+    if (gameID.length>0) {
+      /* checks if gameID is available or not
+      if () {
+
+      }
+      else {
+
+      } */
       firestore()
         .collection('GAMES')
         .doc(gameID)
         .set({
           player_X: nameID,
-          player_O: playerO
-        })
-        .then(() => {
-          toggleModal;
-          navigation.navigate('Game')
+          player_O: playerO,
+          turn: 'X',
+          board: _.range(9).fill(''),
+          count: 0,
+          winner: 'E'
         });
+      game_ID = gameID;
+      name_ID = nameID;
+      symbol = 'X';
+      Alert.alert(
+        'Share this game ID with your friend',
+        gameID,
+        [
+          {text: 'Done'},
+        ],
+        { cancelable: false }
+      );
+      navigation.navigate('Game');
     }
+    else Alert.alert('Error','Please enter a username and game ID');
   }
 
   return (
@@ -82,20 +113,10 @@ export default function HomeScreen({ navigation }) {
         color='#9bc8d4'
         onPress={() => handleCreatePress()}
       />
-      <Modal isVisible={isModalVisible}>
-        <View style={{flex: 1}}>
-          <Text>Share your game ID with your friend</Text>
-
-          <FormButton
-            title="Done"
-            color='#9bc8d4'
-            onPress={toggleModal}
-          />
-        </View>
-      </Modal>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

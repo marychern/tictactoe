@@ -19,6 +19,7 @@ export default function FormInput({ labelName, ...rest }) {
   );
 }
 
+
 const styles = StyleSheet.create({
   input: {
     marginTop: 10,
