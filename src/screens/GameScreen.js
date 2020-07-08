@@ -36,7 +36,6 @@ export default function HomeScreen({ navigation }) {
   const gameID = game_ID;
   const nameID = name_ID;
   const player = symbol;
-  let game_over = false; // changes to true when game is over
   const [board, setBoard] = useState({}); // tictactoe board tracks player's moves
   const [turn, setTurn] = useState('X'); // Changes every time a player makes a move
   // keeps track of # of moves made so far and used to check if the game ends in a draw
@@ -45,17 +44,8 @@ export default function HomeScreen({ navigation }) {
   let win = 'E';
 
   function generateRows() {
-    if (winner!=='E') {
-      console.log("count: "+count);
-      console.log("winner: "+winner);
-      announceWinner();
-      firestore() // resets the game in case players want to use the same game ID
-        .collection('GAMES')
-        .doc(gameID)
-        .delete();
-      navigation.navigate('Home');
-    }
-    else {
+    console.log(player+" in generateRows");
+    if (winner==='E') {
       return rows.map((row, col_index) => {
         return (
           <View style={styles.row} key={col_index}>
@@ -104,7 +94,7 @@ export default function HomeScreen({ navigation }) {
       moves[id] = player;
       const newTurn = (turn==='X') ? 'O' : 'X';
       const newCount = count+1;
-      isGameOver();
+      checkScore();
       onMakeMove(moves, newTurn, newCount);
       console.log(player+' in makeMove after move: '+win);
       firestore()
@@ -115,9 +105,6 @@ export default function HomeScreen({ navigation }) {
         .then(winn => {
           console.log(player+' in firestore after move: ', winn);
         });
-      showTurn();
-      // generateRows();
-      // announceWinner();
     }
   }
   async function onMakeMove(moves, newTurn, newCount) {
@@ -147,23 +134,23 @@ export default function HomeScreen({ navigation }) {
     }
   }, []);
 
-  function isGameOver() { // check to see if the game is over
+  function checkScore() { // check to see if the game is over
     for (let i=0; i<win_combos.length; i++) {
       const [a, b, c] = win_combos[i];
       if (board[a] && board[a]===board[b] && board[a]===board[c]) {
-        game_over = true;
         win = board[a];
       }
     }
     // Check if the game ends in a tie
     console.log("before tie check: "+count);
-    if(count===9){
+    if(count===8){
       console.log("in tie check");
-      game_over = true;
       win = 'T';
     }
   }
+
   function announceWinner() { // function to announce the winner
+    console.log(player+"in announceWinner");
     if (winner!=='E') {
       console.log(winner);
       if(player===winner){
@@ -196,17 +183,18 @@ export default function HomeScreen({ navigation }) {
           { cancelable: false }
         );
       }
-      // firestore() // resets the game in case players want to use the same game ID
-      //   .collection('GAMES')
-      //   .doc(gameID)
-      //   .delete();
-      // navigation.navigate('Home');
+      firestore() // resets the game in case players want to use the same game ID
+        .collection('GAMES')
+        .doc(gameID)
+        .delete();
+      navigation.navigate('Home');
     }
   }
 
   return (
     <View style={styles.board_container}>
       <View style={styles.board}>
+        {announceWinner()}
         {generateRows()}
       </View>
       <View style={styles.gameInfo_container}>
