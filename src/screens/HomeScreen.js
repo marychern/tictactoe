@@ -1,7 +1,7 @@
 {/* HomeScreen:
       initial screen after logging in where you can join/create a game
 */}
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { IconButton, Title, Text } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
@@ -21,18 +21,10 @@ export default function HomeScreen({ navigation }) {
   const [gameID, setGameID] = useState('');
   const [nameID, setNameID] = useState('');
   const [playerO, setPlayerO] = useState('');
-  {/* state variables for checking gameID correctness/availability */}
 
   {/* updates firestore with player O username */}
   function handleJoinPress() {
-    if (gameID.length>0) {
-      /* checks if gameID is correct or not
-      if (firestore().collection('GAMES').doc('gameID').) {
-
-      }
-      else {
-
-      } */
+    if (nameID.length>0 && gameID.length>0) {
       firestore()
         .collection('GAMES')
         .doc(gameID)
@@ -48,14 +40,7 @@ export default function HomeScreen({ navigation }) {
   }
   {/* creates new doc in firestore with game ID (doc ID) and player X username */}
   function handleCreatePress() {
-    if (gameID.length>0) {
-      /* checks if gameID is available or not
-      if () {
-
-      }
-      else {
-
-      } */
+    if (nameID.length>0 && gameID.length>0) {
       firestore()
         .collection('GAMES')
         .doc(gameID)
@@ -78,7 +63,7 @@ export default function HomeScreen({ navigation }) {
         ],
         { cancelable: false }
       );
-      navigation.navigate('Game');
+      navigation.navigate('Waiting');
     }
     else Alert.alert('Error','Please enter a username and game ID');
   }

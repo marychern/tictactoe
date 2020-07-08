@@ -3,7 +3,7 @@
 */}
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, TouchableHighlight, Alert } from 'react-native';
-import { game_ID, name_ID, symbol } from './HomeScreen'
+import { game_ID, name_ID, symbol } from './HomeScreen';
 import firestore from '@react-native-firebase/firestore';
 import range from 'lodash';
 
@@ -33,9 +33,9 @@ export default function HomeScreen({ navigation }) {
     _.range(3).fill(''),
     _.range(3).fill(''),
   ];
+  const player = symbol;
   const gameID = game_ID;
   const nameID = name_ID;
-  const player = symbol;
   const [board, setBoard] = useState({}); // tictactoe board tracks player's moves
   const [turn, setTurn] = useState('X'); // Changes every time a player makes a move
   // keeps track of # of moves made so far and used to check if the game ends in a draw
@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }) {
   let win = 'E';
 
   function generateRows() {
-    console.log(player+" in generateRows");
+    // console.log(player+" in generateRows");
     if (winner==='E') {
       return rows.map((row, col_index) => {
         return (
@@ -96,15 +96,15 @@ export default function HomeScreen({ navigation }) {
       const newCount = count+1;
       checkScore();
       onMakeMove(moves, newTurn, newCount);
-      console.log(player+' in makeMove after move: '+win);
+      // console.log(player+' in makeMove after move: '+win);
       firestore()
         .collection('GAMES')
         .doc(gameID)
         .get()
-        .then(documentSnapshot => documentSnapshot.get('winner'))
-        .then(winn => {
-          console.log(player+' in firestore after move: ', winn);
-        });
+        .then(documentSnapshot => documentSnapshot.get('winner'));
+        // .then(winn => {
+        //   console.log(player+' in firestore after move: ', winn);
+        // });
     }
   }
   async function onMakeMove(moves, newTurn, newCount) {
@@ -142,17 +142,17 @@ export default function HomeScreen({ navigation }) {
       }
     }
     // Check if the game ends in a tie
-    console.log("before tie check: "+count);
+    // console.log("before tie check: "+count);
     if(count===8){
-      console.log("in tie check");
+      // console.log("in tie check");
       win = 'T';
     }
   }
 
   function announceWinner() { // function to announce the winner
-    console.log(player+"in announceWinner");
+    // console.log(player+"in announceWinner");
     if (winner!=='E') {
-      console.log(winner);
+      // console.log(winner);
       if(player===winner){
         Alert.alert(
           'Congratulations, you won!! :)',
@@ -187,7 +187,7 @@ export default function HomeScreen({ navigation }) {
         .collection('GAMES')
         .doc(gameID)
         .delete();
-      navigation.navigate('Home');
+      navigation.navigate('Lobby');
     }
   }
 

@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GameScreen from '../screens/GameScreen';
+import WaitingScreen from '../screens/WaitingScreen';
 
 {/* stack navigators */}
 const LobbyStackNav = createBottomTabNavigator();
@@ -27,6 +28,7 @@ export default function AppStack() {
   return (
     <ModalStack.Navigator mode='modal' headerMode='none'>
       <ModalStack.Screen name='Lobby' component={LobbyStack} />
+      <ModalStack.Screen name='Waiting' component={WaitingScreen} />
       <ModalStack.Screen name='Game' component={GameScreen} />
     </ModalStack.Navigator>
   );
