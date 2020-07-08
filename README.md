@@ -1,5 +1,5 @@
 # tictactoe
-This is a tic-tac-toe game on a React Native App with realtime communication using FireBase.
+This is a multiplayer tic-tac-toe game on a React Native App with realtime communication using FireBase.
 
 ## Usage
 For more information on setting up React Native: https://reactnative.dev/docs/environment-setup
